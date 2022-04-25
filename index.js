@@ -16,14 +16,12 @@ app.post("/sign-up", (req, res) => {
 
 app.post("/tweets", (req, res) => {
     const tweet = req.body;
-    posts.push(tweet);
+    posts.push({username: tweet.username, avatar: login[0].avatar, tweet: tweet.tweet});
     res.send("OK");
 })
 
 app.get("/tweets", (req, res) => {
-    let resposta = [];
-    
-    res.send(resposta);
+    posts.length>=10 ? res.send(posts.slice(posts.length-10, posts.length-1)) : res.send(posts)
 })
 
 app.listen(5000, () => {
